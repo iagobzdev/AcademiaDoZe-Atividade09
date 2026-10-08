@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Infrastructure.Exceptions;
 using System.Collections.Concurrent;
 using System.Data.Common;

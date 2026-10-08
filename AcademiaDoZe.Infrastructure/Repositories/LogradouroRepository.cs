@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Domain.ValueObjects;
@@ -11,7 +11,7 @@ namespace AcademiaDoZe.Infrastructure.Repositories;
 
 public class LogradouroRepository : BaseRepository, ILogradouroRepository
 {
-    public LogradouroRepository(string connectionString) : base(connectionString)
+    public LogradouroRepository(string connectionString, DatabaseType databaseType = DatabaseType.Sqlite) : base(connectionString, databaseType)
     {
     }
 

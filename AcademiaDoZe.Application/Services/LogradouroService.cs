@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Application.Interfaces;
 using AcademiaDoZe.Application.Mappings;
@@ -8,8 +9,6 @@ namespace AcademiaDoZe.Application.Services;
 
 public class LogradouroService : ILogradouroService
 {
-    // Func que cria instâncias do repositório quando necessário, garantindo freshness e evitando problemas de ciclo de vida
-    // freshness indica que cada chamada cria uma nova instância do repositório, evitando problemas de ciclo de vida
     private readonly Func<ILogradouroRepository> _repoFactory;
 
     public LogradouroService(Func<ILogradouroRepository> repoFactory)
@@ -36,7 +35,7 @@ public class LogradouroService : ILogradouroService
     public async Task<IEnumerable<LogradouroDto>> ObterTodosAsync(CancellationToken cancellationToken = default)
     {
         var logradouros = await _repoFactory().ObterTodos(cancellationToken);
-        return [.. logradouros.Select(l => l.ToDto())]; // expressão de interpolação para criar uma nova lista de DTOs
+        return [.. logradouros.Select(l => l.ToDto())];
     }
 
     public async Task<LogradouroDto?> ObterPorCepAsync(string cep, CancellationToken cancellationToken = default)

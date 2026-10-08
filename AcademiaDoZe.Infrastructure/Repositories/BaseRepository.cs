@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Exceptions;
 using System.Data;
@@ -6,19 +6,17 @@ using System.Data.Common;
 
 namespace AcademiaDoZe.Infrastructure.Repositories;
 
-/*
-BaseRepository é uma classe utilitária de infraestrutura focada em gerenciamento de conexões (GetOpenConnectionAsync e Dispose/DisposeAsync).
-As operações de CRUD e mapeamento são implementadas diretamente nas classes filhas (AlunoRepository, ColaboradorRepository, etc.).
-*/
 public abstract class BaseRepository : IDisposable, IAsyncDisposable
 {
     protected readonly string _connectionString;
+    protected readonly DatabaseType _databaseType;
     private DbConnection? _connection;
     private bool _disposed;
 
-    protected BaseRepository(string connectionString)
+    protected BaseRepository(string connectionString, DatabaseType databaseType = DatabaseType.Sqlite)
     {
         _connectionString = connectionString ?? throw new InfrastructureException("STRING_CONEXAO_NULA", $"String de conexão não pode ser nula: {nameof(connectionString)}");
+        _databaseType = databaseType;
     }
 
     protected virtual async Task<DbConnection> GetOpenConnectionAsync(CancellationToken cancellationToken = default)
@@ -27,12 +25,13 @@ public abstract class BaseRepository : IDisposable, IAsyncDisposable
 
         try
         {
-            // cria o banco e as tabelas do banco de dados se não existir
+            DbProvider.ValidarDatabaseType(_databaseType);
+
             await DbInitializer.InicializarAsync(_connectionString, cancellationToken);
 
             if (_connection == null)
             {
-                _connection = DbProvider.CreateConnection(_connectionString);
+                _connection = DbProvider.CreateConnection(_connectionString, _databaseType);
                 await _connection.OpenAsync(cancellationToken);
                 await HabilitarChavesEstrangeirasAsync(_connection, cancellationToken);
             }

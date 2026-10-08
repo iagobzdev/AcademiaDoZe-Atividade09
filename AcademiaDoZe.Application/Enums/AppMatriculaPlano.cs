@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using System.ComponentModel.DataAnnotations;
 
 namespace AcademiaDoZe.Application.Enums;

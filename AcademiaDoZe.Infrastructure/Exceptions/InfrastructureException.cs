@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 namespace AcademiaDoZe.Infrastructure.Exceptions;
 
 public class InfrastructureException : Exception

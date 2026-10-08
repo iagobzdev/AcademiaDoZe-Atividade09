@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Repositories;
@@ -12,7 +12,7 @@ namespace AcademiaDoZe.Infrastructure.Repositories;
 
 public class ColaboradorRepository : BaseRepository, IColaboradorRepository
 {
-    public ColaboradorRepository(string connectionString) : base(connectionString)
+    public ColaboradorRepository(string connectionString, DatabaseType databaseType = DatabaseType.Sqlite) : base(connectionString, databaseType)
     {
     }
 

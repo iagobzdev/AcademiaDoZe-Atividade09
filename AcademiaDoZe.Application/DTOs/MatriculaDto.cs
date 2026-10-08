@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Application.Enums;
 
 namespace AcademiaDoZe.Application.DTOs;

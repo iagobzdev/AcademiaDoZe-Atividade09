@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using System.Data.Common;
 using System.Globalization;
 

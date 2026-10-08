@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.ValueObjects;

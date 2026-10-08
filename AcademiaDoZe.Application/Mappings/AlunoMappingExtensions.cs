@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.ValueObjects;
@@ -21,7 +22,7 @@ public static class AlunoMappingExtensions
             Endereco = logradouro?.ToDto(),
             Numero = aluno.Endereco?.Numero ?? string.Empty,
             Complemento = aluno.Endereco?.Complemento,
-            Senha = null, // a senha não deve ser exposta no DTO
+            Senha = null,
             Foto = aluno.Foto?.Conteudo != null ? new ArquivoDto { Conteudo = aluno.Foto.Conteudo } : null
         };
     }
@@ -101,10 +102,3 @@ public static class AlunoMappingExtensions
         return result.Value!;
     }
 }
-
-/*
- * A camada de aplicação não expõe a senha do Aluno na DTO, ao tentar usar essas entidades, por exemplo, na matricula, pode ocorrer erro de validação/normalização do domínio, quando a DTO for mapeada para a entidade.
- * Ou seja, ao tentar salvar uma nova matricula, a DTO do Aluno vai ser mapeada para a entidade Aluno para poder ser enviada a camada de Infraestrutura, porém, como na DTO a senha do Aluno foi definida como null, ao realizar o mapeamento, a validação de domínio da entidade falha, pois a senha é uma campo obrigatório.
- * A prática mais robusta para resolver isso, é criar um DTO ou Mapeamento específico para o caso de uso.
- * O mapeamento ToEntityMatricula() será utilizado exclusivamente na Matricula, e mascara a senha, passando desta forma pela validação.
- */

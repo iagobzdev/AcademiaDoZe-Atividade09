@@ -1,3 +1,4 @@
+// Autor: Iago Barboza Ceccatto
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -13,7 +14,6 @@ public static class EnumExtensions
         if (attribute != null)
             return attribute.Name ?? value.ToString();
 
-        // Tratamento para enum com atributo [Flags] onde múltiplos valores podem estar combinados
         if (type.GetCustomAttribute<FlagsAttribute>() != null)
         {
             var names = new List<string>();

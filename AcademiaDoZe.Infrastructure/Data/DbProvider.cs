@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Infrastructure.Exceptions;
 using Microsoft.Data.Sqlite;
 using System.Data;
@@ -6,13 +6,20 @@ using System.Data.Common;
 
 namespace AcademiaDoZe.Infrastructure.Data;
 
-// Provedor centralizado de acesso a dados ADO.NET. O projeto utiliza exclusivamente SQLite (Microsoft.Data.Sqlite).
 public static class DbProvider
 {
-    public const int DefaultCommandTimeout = 30; // segundos
+    public const int DefaultCommandTimeout = 30;
 
-    public static DbConnection CreateConnection(string connectionString)
+    public static void ValidarDatabaseType(DatabaseType databaseType)
     {
+        if (databaseType != DatabaseType.Sqlite)
+            throw new InfrastructureException("GERENCIADOR_NAO_SUPORTADO", $"Gerenciador de banco de dados '{databaseType}' não suportado. Esta solução utiliza exclusivamente o SQLite (DatabaseType.Sqlite).");
+    }
+
+    public static DbConnection CreateConnection(string connectionString, DatabaseType databaseType = DatabaseType.Sqlite)
+    {
+        ValidarDatabaseType(databaseType);
+
         if (string.IsNullOrWhiteSpace(connectionString))
             throw new InfrastructureException("CONEXAO_STRING_VAZIA", "String de conexão não pode ser vazia.");
 
@@ -75,8 +82,6 @@ public static class DbProvider
         throw new InfrastructureException(errorCode, errorMessage);
     }
 
-    #region Funções específicas do dialeto SQLite
-
     public static string GetScriptName() => "script_sqlite.sql";
 
     public static string FormatInsertQuery(string insertSql)
@@ -98,6 +103,4 @@ public static class DbProvider
 
     public static string GetDateDayExpression(string dateColumn) =>
         $"CAST(strftime('%d', {dateColumn}) AS INTEGER)";
-
-    #endregion
 }

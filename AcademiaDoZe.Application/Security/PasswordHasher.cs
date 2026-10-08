@@ -1,23 +1,22 @@
+// Autor: Iago Barboza Ceccatto
 using Konscious.Security.Cryptography;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace AcademiaDoZe.Application.Security;
 
-// Hash de senha com Argon2id (Konscious). Formato de armazenamento: ARGON2ID:{t}:{mKb}:{p}:{saltBase64}:{hashBase64}
 public static class PasswordHasher
 {
-    private const int SaltSize = 16; // 128 bits
-    private const int HashSize = 32; // 256 bits
+    private const int SaltSize = 16;
+    private const int HashSize = 32;
     private const int DefaultIterations = 3;
-    private const int DefaultMemorySizeKb = 64 * 1024; // 64 MB
+    private const int DefaultMemorySizeKb = 64 * 1024;
 
     public static string Hash(string password)
     {
         if (string.IsNullOrEmpty(password))
             throw new ArgumentException("Password cannot be empty.", nameof(password));
 
-        // Salt criptograficamente seguro
         byte[] salt = RandomNumberGenerator.GetBytes(SaltSize);
         int p = Math.Max(1, Environment.ProcessorCount);
 
@@ -25,13 +24,12 @@ public static class PasswordHasher
         {
             Salt = salt,
             DegreeOfParallelism = p,
-            MemorySize = DefaultMemorySizeKb, // em KB para Konscious
+            MemorySize = DefaultMemorySizeKb,
             Iterations = DefaultIterations
         };
 
         byte[] hash = argon2.GetBytes(HashSize);
 
-        // Armazena prefixo + parâmetros + salt + hash
         return $"ARGON2ID:{DefaultIterations}:{DefaultMemorySizeKb}:{p}:{Convert.ToBase64String(salt)}:{Convert.ToBase64String(hash)}";
     }
 
@@ -69,7 +67,6 @@ public static class PasswordHasher
 
         byte[] actual = argon2.GetBytes(expected.Length);
 
-        // Comparação em tempo constante
         return CryptographicOperations.FixedTimeEquals(actual, expected);
     }
 }
