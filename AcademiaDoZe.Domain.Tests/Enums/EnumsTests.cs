@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Enums;
 
 namespace AcademiaDoZe.Domain.Tests.Enums;

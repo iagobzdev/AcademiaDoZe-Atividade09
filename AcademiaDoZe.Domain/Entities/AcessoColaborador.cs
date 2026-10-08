@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 
 namespace AcademiaDoZe.Domain.Entities;

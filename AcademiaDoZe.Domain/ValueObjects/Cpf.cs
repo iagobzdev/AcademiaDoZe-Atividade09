@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Services;
 
@@ -32,8 +32,6 @@ public record Cpf
     {
         if (cpf.Length != 11) return false;
 
-        // A validação dos dígitos verificadores foi simplificada na versão usada em aula
-        // para facilitar a criação de dados de teste durante esta etapa da disciplina.
         return true;
     }
 

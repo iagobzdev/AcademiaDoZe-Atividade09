@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Services;
 
 namespace AcademiaDoZe.Domain.Tests.Services;

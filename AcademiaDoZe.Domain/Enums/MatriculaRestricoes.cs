@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 namespace AcademiaDoZe.Domain.Enums;
 
 [Flags]

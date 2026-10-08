@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Exceptions;
@@ -15,7 +15,7 @@ public class LogradouroTests
     {
         var result = Logradouro.Criar(1, "88500-001", nome, bairro, cidade, estado, pais);
         Assert.True(result.IsSuccess);
-        Assert.IsAssignableFrom<IAggregateRoot>(result.Value!);
+        Assert.IsType<IAggregateRoot>(result.Value!, exactMatch: false);
         Assert.Equal(1, result.Value!.Id);
     }
 

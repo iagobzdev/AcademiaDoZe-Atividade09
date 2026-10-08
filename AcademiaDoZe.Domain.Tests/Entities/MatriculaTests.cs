@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
@@ -41,7 +41,7 @@ public class MatriculaTests
         var result = Criar(plano: plano, inicio: inicio);
         Assert.True(result.IsSuccess);
         Assert.Equal(inicio.AddMonths(meses), result.Value!.DataFim);
-        Assert.IsAssignableFrom<IAggregateRoot>(result.Value);
+        Assert.IsType<IAggregateRoot>(result.Value, exactMatch: false);
     }
 
     [Theory]

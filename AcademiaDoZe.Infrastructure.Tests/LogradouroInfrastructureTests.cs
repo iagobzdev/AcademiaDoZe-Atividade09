@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.ValueObjects;
 using AcademiaDoZe.Infrastructure.Exceptions;
@@ -152,7 +152,6 @@ public class LogradouroInfrastructureTests : TestBase
         var logradouro = Logradouro.Criar(0, cep, "Rua X", "Bairro Y", cidadeUnica, "SC", "Brasil").Value!;
         await _repository.Adicionar(logradouro);
 
-        // Comparação exata: SQLite usa colação BINARY (case-sensitive) por padrão para "=".
         var resultados = await _repository.ObterPorCidade(cidadeUnica);
         Assert.NotNull(resultados);
         Assert.Single(resultados);

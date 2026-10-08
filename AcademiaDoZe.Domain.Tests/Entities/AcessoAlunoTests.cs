@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Exceptions;
@@ -21,7 +21,7 @@ public class AcessoAlunoTests
         Assert.True(result.IsSuccess);
         Assert.Equal(7, result.Value!.AlunoId);
         Assert.Equal(dataHora, result.Value.DataHora);
-        Assert.IsAssignableFrom<IAggregateRoot>(result.Value);
+        Assert.IsType<IAggregateRoot>(result.Value, exactMatch: false);
     }
 
     [Theory]

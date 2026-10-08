@@ -1,9 +1,8 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Exceptions;
 
 namespace AcademiaDoZe.Domain.Entities;
 
-// Classe base para todas as entidades, garantindo identidade única e validação de Id.
 public abstract class Entity
 {
     public int Id { get; protected set; }

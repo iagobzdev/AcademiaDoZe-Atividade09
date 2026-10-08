@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Exceptions;
@@ -42,7 +42,7 @@ public class AlunoTests
         var result = Criar(nome: nome);
         Assert.True(result.IsSuccess);
         Assert.Equal(esperado, result.Value!.Nome);
-        Assert.IsAssignableFrom<IAggregateRoot>(result.Value);
+        Assert.IsType<IAggregateRoot>(result.Value, exactMatch: false);
     }
 
     [Theory]

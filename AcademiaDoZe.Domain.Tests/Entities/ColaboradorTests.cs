@@ -1,4 +1,4 @@
-// Iago Barboza
+// Autor: Iago Barboza Ceccatto
 using AcademiaDoZe.Domain.Common;
 using AcademiaDoZe.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
@@ -47,7 +47,7 @@ public class ColaboradorTests
     {
         var result = Criar(tipo: tipo, vinculo: vinculo);
         Assert.True(result.IsSuccess);
-        Assert.IsAssignableFrom<IAggregateRoot>(result.Value!);
+        Assert.IsType<IAggregateRoot>(result.Value!, exactMatch: false);
     }
 
     [Fact]
