@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Application", "AcademiaDoZe.Application\AcademiaDoZe.Application.csproj", "{D8798278-4521-4B6B-9105-8324F9BC0663}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Presentation.AppMaui", "AcademiaDoZe.Presentation.AppMaui\AcademiaDoZe.Presentation.AppMaui.csproj", "{314D56FD-5728-4386-82E9-4132A241BF73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{D8798278-4521-4B6B-9105-8324F9BC0663}.Release|x64.Build.0 = Release|Any CPU
 		{D8798278-4521-4B6B-9105-8324F9BC0663}.Release|x86.ActiveCfg = Release|Any CPU
 		{D8798278-4521-4B6B-9105-8324F9BC0663}.Release|x86.Build.0 = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|x64.Build.0 = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Debug|x86.Build.0 = Debug|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|x64.ActiveCfg = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|x64.Build.0 = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|x86.ActiveCfg = Release|Any CPU
+		{314D56FD-5728-4386-82E9-4132A241BF73}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

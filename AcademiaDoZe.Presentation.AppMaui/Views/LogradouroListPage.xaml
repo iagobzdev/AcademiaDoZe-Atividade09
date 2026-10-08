@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaDoZe.Presentation.AppMaui.Views.LogradouroListPage"
+             xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
+             x:DataType="vm:LogradouroListViewModel"
+             xmlns:dto="clr-namespace:AcademiaDoZe.Application.DTOs;assembly=AcademiaDoZe.Application"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="28,20,28,0" RowSpacing="16" MaximumWidthRequest="1180">
+
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                <Label Text="Cadastros" Style="{StaticResource Overline}" />
+                <Label Text="Logradouros" Style="{StaticResource Headline}" />
+                <Label Text="{Binding Resumo}" Style="{StaticResource Muted}" />
+            </VerticalStackLayout>
+            <Button Grid.Column="1" Text="+  Novo logradouro" Style="{StaticResource ButtonAccent}" Command="{Binding AddLogradouroCommand}" VerticalOptions="Center" />
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="14,14,4,4">
+            <FlexLayout Wrap="Wrap" AlignItems="End">
+                <ContentView Padding="0,0,10,10">
+                    <Picker Title="Filtrar por" ItemsSource="{Binding FilterTypes}" SelectedItem="{Binding SelectedFilterType}" WidthRequest="130" />
+                </ContentView>
+                <ContentView FlexLayout.Basis="220" FlexLayout.Grow="1" Padding="0,0,10,10">
+                    <Entry Text="{Binding SearchText}" Placeholder="Digite a cidade, o ID ou o CEP..." ReturnCommand="{Binding SearchLogradourosCommand}" />
+                </ContentView>
+                <HorizontalStackLayout Spacing="10" Padding="0,0,10,10">
+                    <Button Text="Buscar" Style="{StaticResource ButtonPrimary}" HeightRequest="42" Command="{Binding SearchLogradourosCommand}" />
+                    <Button Text="Limpar" Style="{StaticResource ButtonSecondary}" HeightRequest="42" Command="{Binding ClearSearchCommand}" />
+                </HorizontalStackLayout>
+            </FlexLayout>
+        </Border>
+
+        <RefreshView Grid.Row="2" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Logradouros}" SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12" Padding="20,40">
+                        <Label Text="Nenhum logradouro encontrado" Style="{StaticResource SubHeadline}" HorizontalOptions="Center" />
+                        <Label Text="Cadastre um novo endereço ou ajuste o filtro da busca." Style="{StaticResource Muted}" HorizontalOptions="Center" />
+                        <Button Text="Adicionar primeiro logradouro" Command="{Binding AddLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HorizontalOptions="Center" Margin="0,8,0,0" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="24" Color="Transparent" />
+                </CollectionView.Footer>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="dto:LogradouroDto">
+                        <Border Style="{StaticResource CardBorder}" Padding="16,14">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+
+                                <Border Style="{StaticResource Badge}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimarySoftLight}, Dark={StaticResource PrimarySoftDark}}">
+                                    <Label Text="{Binding Estado}" Style="{StaticResource BadgeText}" FontSize="15" TextColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="{Binding Nome}" FontFamily="OpenSansSemibold" FontSize="16" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                        <Border Style="{StaticResource Chip}">
+                                            <Label Text="{Binding Id, StringFormat='#{0}'}" Style="{StaticResource ChipText}" />
+                                        </Border>
+                                    </HorizontalStackLayout>
+                                    <Label Style="{StaticResource Muted}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Bairro}" />
+                                                <Span Text=" · " />
+                                                <Span Text="{Binding Cidade}" />
+                                                <Span Text=" - " />
+                                                <Span Text="{Binding Estado}" />
+                                                <Span Text=" · " />
+                                                <Span Text="{Binding Pais}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding Cep, StringFormat='CEP {0}'}" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource AccentLight}, Dark={StaticResource AccentDark}}" />
+                                </VerticalStackLayout>
+
+                                <HorizontalStackLayout Grid.Column="2" Spacing="8" VerticalOptions="Center">
+                                    <Button Text="Editar" Style="{StaticResource ButtonSmall}" Clicked="OnEditButtonClicked" />
+                                    <Button Text="Excluir" Style="{StaticResource ButtonDanger}" Clicked="OnDeleteButtonClicked" />
+                                </HorizontalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </Grid>
+
+</ContentPage>

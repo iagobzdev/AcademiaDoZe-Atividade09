@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaDoZe.Presentation.AppMaui.Views.DashboardListPage"
+             xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
+             x:DataType="vm:DashboardListViewModel"
+             Title="{Binding Title}">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="28,24" Spacing="28" MaximumWidthRequest="1180">
+
+                <Border Style="{StaticResource HeroBorder}">
+                    <VerticalStackLayout Spacing="18">
+                        <Image Source="{AppThemeBinding Light=academiadoze.png, Dark=academiadoze_dark.png}"
+                               Aspect="AspectFit"
+                               HeightRequest="130"
+                               HorizontalOptions="Start"
+                               SemanticProperties.Description="Logo Academia do Zé - Iago Barboza Ceccatto" />
+
+                        <FlexLayout Wrap="Wrap" AlignItems="Center" JustifyContent="SpaceBetween">
+                            <VerticalStackLayout Spacing="2" Margin="0,0,16,8">
+                                <Label Text="Painel de controle" Style="{StaticResource SubHeadline}" />
+                                <Label Text="{Binding UltimaAtualizacao}" Style="{StaticResource Muted}" />
+                            </VerticalStackLayout>
+                            <HorizontalStackLayout Spacing="10" Margin="0,0,0,8">
+                                <Button Text="Alternar tema" Style="{StaticResource ButtonSecondary}" Command="{Binding AlternarTemaCommand}" />
+                                <Button Text="Atualizar" Style="{StaticResource ButtonPrimary}" Command="{Binding LoadDashboardDataCommand}" />
+                            </HorizontalStackLayout>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Visão geral" Style="{StaticResource Overline}" />
+
+                    <FlexLayout Wrap="Wrap" JustifyContent="Start" AlignItems="Stretch" Margin="0,0,-16,0">
+
+                        <ContentView FlexLayout.Basis="230" FlexLayout.Grow="1" Padding="0,0,16,16">
+                            <Border Style="{StaticResource StatCard}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToLogradourosCommand}" />
+                                </Border.GestureRecognizers>
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
+                                    <Border Style="{StaticResource Badge}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimarySoftLight}, Dark={StaticResource PrimarySoftDark}}">
+                                        <Label Text="LG" Style="{StaticResource BadgeText}" TextColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                                    </Border>
+                                    <Label Grid.Row="1" Text="{Binding TotalLogradouros}" Style="{StaticResource StatNumber}" Margin="0,8,0,0" />
+                                    <Label Grid.Row="2" Text="Logradouros" Style="{StaticResource SubHeadline}" FontSize="16" />
+                                    <Label Grid.Row="3" Text="Gerenciar endereços →" Style="{StaticResource Muted}" TextColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                                </Grid>
+                            </Border>
+                        </ContentView>
+
+                        <ContentView FlexLayout.Basis="230" FlexLayout.Grow="1" Padding="0,0,16,16">
+                            <Border Style="{StaticResource StatCard}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToAlunosCommand}" />
+                                </Border.GestureRecognizers>
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
+                                    <Border Style="{StaticResource Badge}" BackgroundColor="{AppThemeBinding Light={StaticResource AccentSoftLight}, Dark={StaticResource AccentSoftDark}}">
+                                        <Label Text="AL" Style="{StaticResource BadgeText}" TextColor="{AppThemeBinding Light={StaticResource AccentLight}, Dark={StaticResource AccentDark}}" />
+                                    </Border>
+                                    <Label Grid.Row="1" Text="{Binding TotalAlunos}" Style="{StaticResource StatNumber}" Margin="0,8,0,0" />
+                                    <Label Grid.Row="2" Text="Alunos" Style="{StaticResource SubHeadline}" FontSize="16" />
+                                    <Label Grid.Row="3" Text="Em breve" Style="{StaticResource Muted}" />
+                                </Grid>
+                            </Border>
+                        </ContentView>
+
+                        <ContentView FlexLayout.Basis="230" FlexLayout.Grow="1" Padding="0,0,16,16">
+                            <Border Style="{StaticResource StatCard}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToColaboradoresCommand}" />
+                                </Border.GestureRecognizers>
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
+                                    <Border Style="{StaticResource Badge}" BackgroundColor="{AppThemeBinding Light={StaticResource IndigoSoftLight}, Dark={StaticResource IndigoSoftDark}}">
+                                        <Label Text="CO" Style="{StaticResource BadgeText}" TextColor="{AppThemeBinding Light={StaticResource IndigoLight}, Dark={StaticResource IndigoDark}}" />
+                                    </Border>
+                                    <Label Grid.Row="1" Text="{Binding TotalColaboradores}" Style="{StaticResource StatNumber}" Margin="0,8,0,0" />
+                                    <Label Grid.Row="2" Text="Colaboradores" Style="{StaticResource SubHeadline}" FontSize="16" />
+                                    <Label Grid.Row="3" Text="Em breve" Style="{StaticResource Muted}" />
+                                </Grid>
+                            </Border>
+                        </ContentView>
+
+                        <ContentView FlexLayout.Basis="230" FlexLayout.Grow="1" Padding="0,0,16,16">
+                            <Border Style="{StaticResource StatCard}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToMatriculasCommand}" />
+                                </Border.GestureRecognizers>
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
+                                    <Border Style="{StaticResource Badge}" BackgroundColor="{AppThemeBinding Light={StaticResource RoseSoftLight}, Dark={StaticResource RoseSoftDark}}">
+                                        <Label Text="MT" Style="{StaticResource BadgeText}" TextColor="{AppThemeBinding Light={StaticResource RoseLight}, Dark={StaticResource RoseDark}}" />
+                                    </Border>
+                                    <Label Grid.Row="1" Text="{Binding TotalMatriculas}" Style="{StaticResource StatNumber}" Margin="0,8,0,0" />
+                                    <Label Grid.Row="2" Text="Matrículas" Style="{StaticResource SubHeadline}" FontSize="16" />
+                                    <Label Grid.Row="3" Text="Em breve" Style="{StaticResource Muted}" />
+                                </Grid>
+                            </Border>
+                        </ContentView>
+
+                    </FlexLayout>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </Grid>
+
+</ContentPage>

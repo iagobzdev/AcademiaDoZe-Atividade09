@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AcademiaDoZe.Presentation.AppMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views"
+    Title="Academia do Zé"
+    FlyoutBehavior="{OnIdiom Desktop=Locked, Default=Flyout}"
+    FlyoutWidth="250"
+    FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+
+    <Shell.FlyoutHeader>
+        <Grid Padding="18,22,18,14" RowDefinitions="Auto,Auto" RowSpacing="10">
+            <Image Source="{AppThemeBinding Light=academiadoze.png, Dark=academiadoze_dark.png}"
+                   Aspect="AspectFit"
+                   HeightRequest="54"
+                   HorizontalOptions="Start" />
+            <BoxView Grid.Row="1" HeightRequest="1" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Label Text="Iago Barboza Ceccatto · v1.0"
+               Padding="18,12"
+               FontSize="12"
+               TextColor="{AppThemeBinding Light={StaticResource TextMutedLight}, Dark={StaticResource TextMutedDark}}" />
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem Title="Dashboard" Icon="icone_dashboard.png">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardListPage}" Route="dashboard" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Logradouros" Icon="icone_logradouro.png">
+        <ShellContent ContentTemplate="{DataTemplate views:LogradouroListPage}" Route="logradouros" />
+    </FlyoutItem>
+
+</Shell>
